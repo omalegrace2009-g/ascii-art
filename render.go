@@ -2,19 +2,17 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"strings"
 )
 
-// reads the banner(i.e access the character's storage)
-func readBanner(file string) ([]string, error) {
-	ban, err := os.ReadFile(file)
-	if err != nil { 
-		return nil, err
-	}
-	line := strings.Split(string(ban), "\n")
-	return line, err
-}
+// // reads the banner(i.e access the character's storage)
+// func readBanner(file string) ([]string, error) {
+// 	ban, err := os.ReadFile(file)
+// 	if err != nil {
+// 		return nil, err
+// 	}
+// 	line := strings.Split(string(ban), "\n")
+// 	return line, err
+// }
 
 // gets the character's positiion in the banner
 func getLine(ban []string, c rune) []string {
@@ -43,29 +41,4 @@ func printArt(print []string, ban []string) {
 			fmt.Println()
 		}
 	}
-}
-
-// main function
-func main() {
-	if len(os.Args) != 2 {
-		fmt.Println("Usage: go run . [string]")
-		return
-	}
-	input := os.Args[1]
-	if input == "" {
-		return
-	}
-	if input == "\\n" {
-		fmt.Println()
-		return
-	}
-	lines := strings.Split(input, "\\n")
-	fit, err := readBanner("banner/standard.txt")
-	if err != nil {
-		fmt.Println("Error reading file: ", err)
-		return
-	}
-
-	printArt(lines, fit)
-
 }
