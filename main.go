@@ -22,36 +22,28 @@ func validateInput(args []string) ([]string, error) {
 	return result, nil
 
 }
+
 func main() {
+
 	if len(os.Args) != 2 {
 		fmt.Println("Usage: go run . [string]")
 		return
 	}
 
 	input := os.Args[1]
-
-	// Edge cases for no argument.
-	if len(input) != 2 {
+	if input == "" {
 		return
 	}
-
-	// Split input on \n to get seperate rows
-	splitIntput := strings.Split(input, "\n")
-
-	valid, err := validateInput(splitIntput)
-	if err != nil {
-		fmt.Println("Error: ", err)
+	if input == "\\n" {
+		fmt.Println()
 		return
 	}
+	splitIntput := strings.Split(input, "\\n")
 
 	fit, err := LoadBanner("banner/standard.txt")
 	if err != nil {
 		fmt.Println("Error reading file: ", err)
 		return
 	}
-
 	printArt(splitIntput, fit)
-
-	fmt.Println(valid)
-
 }
