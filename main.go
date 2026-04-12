@@ -10,7 +10,9 @@ import (
 func validateInput(args []string) ([]string, error) {
 	result := []string{}
 	for _, row := range args {
+
 		for _, char := range row {
+			
 			if !(char >= 32 && char <= 126 || char == '\n') {
 				return nil, errors.New("bad character found")
 			}
